@@ -2,95 +2,584 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Maher Media | Web & Social Media</title>
-  <meta name="description" content="Maher Media builds modern websites and manages social media that helps brands grow." />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Maher Media | Multi-Media Design</title>
+  <meta name="description" content="Maher Media builds modern websites and manages social media that turns attention into real growth." />
+  <meta name="theme-color" content="#0b0b12" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: Inter, system-ui, sans-serif;
-      background: #0b0b0f;
-      color: #ffffff;
-      line-height: 1.6;
+    :root{
+      /* Logo-driven palette */
+      --bg0:#07070c;
+      --bg1:#0b0b12;
+      --bg2:#0f1020;
+      --card:#0f1222cc;
+      --border:#23244a;
+      --text:#ffffff;
+      --muted:#b7b8d3;
+
+      --p1:#7c3aed;   /* violet */
+      --p2:#4f46e5;   /* indigo */
+      --p3:#22d3ee;   /* cyan */
+      --p4:#60a5fa;   /* blue */
+
+      --shadow: 0 20px 60px rgba(0,0,0,.45);
+      --radius: 18px;
+      --radius2: 26px;
+      --max: 1120px;
     }
-    header {
-      padding: 5rem 2rem;
-      text-align: center;
-      background: radial-gradient(circle at top, #1a1a2e, #0b0b0f);
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 800px at 15% 10%, rgba(124,58,237,.20), transparent 55%),
+        radial-gradient(900px 700px at 80% 25%, rgba(34,211,238,.14), transparent 60%),
+        radial-gradient(900px 700px at 55% 90%, rgba(79,70,229,.16), transparent 55%),
+        linear-gradient(180deg, var(--bg0), var(--bg1) 40%, var(--bg0));
+      overflow-x:hidden;
+      line-height:1.6;
     }
-    header h1 {
-      font-size: 3rem;
-      font-weight: 700;
+
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 20px;}
+    .pill{
+      display:inline-flex;align-items:center;gap:.55rem;
+      padding:.45rem .8rem;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(15,18,34,.45);
+      backdrop-filter: blur(10px);
+      border-radius:999px;
+      color:var(--muted);
+      font-weight:600;
+      font-size:.9rem;
     }
-    header p {
-      max-width: 600px;
-      margin: 1.5rem auto;
-      color: #b5b5c3;
+    .dot{
+      width:.55rem;height:.55rem;border-radius:999px;
+      background: linear-gradient(90deg, var(--p1), var(--p3));
+      box-shadow: 0 0 18px rgba(34,211,238,.35);
     }
-    .btn {
-      display: inline-block;
-      margin-top: 2rem;
-      padding: 0.75rem 1.75rem;
-      border-radius: 999px;
-      background: #4f46e5;
-      color: #fff;
-      text-decoration: none;
-      font-weight: 600;
+
+    /* Top nav */
+    .nav{
+      position:sticky; top:0; z-index:50;
+      background: linear-gradient(180deg, rgba(7,7,12,.75), rgba(7,7,12,.35));
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255,255,255,.06);
     }
-    section {
-      padding: 4rem 2rem;
-      max-width: 1100px;
-      margin: auto;
+    .nav-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0;
     }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight:800; letter-spacing:-.02em;
     }
-    .card {
-      background: #12121a;
-      padding: 2rem;
+    .mark{
+      width:38px; height:38px; border-radius:12px;
+      background: radial-gradient(circle at 20% 20%, rgba(124,58,237,.9), rgba(79,70,229,.55) 45%, rgba(34,211,238,.55) 85%);
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow: 0 14px 40px rgba(0,0,0,.35);
+      position:relative;
+      overflow:hidden;
+    }
+    .mark:before{
+      content:"";
+      position:absolute; inset:-40%;
+      background: conic-gradient(from 210deg, rgba(124,58,237,.0), rgba(124,58,237,.9), rgba(34,211,238,.8), rgba(79,70,229,.0));
+      animation: spin 10s linear infinite;
+      opacity:.75;
+    }
+    .mark:after{
+      content:"M";
+      position:absolute; inset:0;
+      display:grid; place-items:center;
+      font-weight:900;
+      color:rgba(255,255,255,.95);
+      text-shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    .nav-links{
+      display:flex; align-items:center; gap:18px;
+      color:rgba(255,255,255,.78);
+      font-weight:600;
+      font-size:.95rem;
+    }
+    .nav-links a{padding:8px 10px; border-radius:12px}
+    .nav-links a:hover{background: rgba(255,255,255,.06); color:#fff}
+    .cta{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:10px 14px;
+      border-radius:999px;
+      font-weight:800;
+      background: linear-gradient(90deg, var(--p1), var(--p2), var(--p3));
+      border:1px solid rgba(255,255,255,.14);
+      box-shadow: 0 18px 55px rgba(124,58,237,.18);
+    }
+    .cta:hover{filter:brightness(1.08)}
+    .cta:active{transform: translateY(1px)}
+
+    /* Hero */
+    .hero{
+      padding:70px 0 20px;
+      position:relative;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:28px;
+      align-items:center;
+    }
+    .h1{
+      font-size: clamp(2.25rem, 4.2vw, 3.65rem);
+      line-height: 1.05;
+      letter-spacing:-.04em;
+      margin-top:16px;
+    }
+    .grad{
+      background: linear-gradient(90deg, #fff, rgba(255,255,255,.78) 35%, rgba(255,255,255,.95));
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+    }
+    .sub{
+      margin-top:14px;
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 56ch;
+    }
+    .hero-actions{
+      display:flex; gap:12px; flex-wrap:wrap;
+      margin-top:22px;
+    }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:12px 16px;
+      border-radius:999px;
+      font-weight:800;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(15,18,34,.55);
+      backdrop-filter: blur(10px);
+    }
+    .btn:hover{background: rgba(255,255,255,.08)}
+    .btn.primary{
+      background: linear-gradient(90deg, var(--p1), var(--p2), var(--p3));
+      border:1px solid rgba(255,255,255,.16);
+      box-shadow: 0 18px 60px rgba(79,70,229,.16);
+    }
+    .btn.primary:hover{filter:brightness(1.08)}
+    .tiny{
+      margin-top:16px;
+      color: rgba(255,255,255,.55);
+      font-weight:600;
+      font-size:.95rem;
+    }
+
+    /* Hero card (right) */
+    .glass{
+      border-radius: var(--radius2);
+      background: linear-gradient(180deg, rgba(15,18,34,.72), rgba(15,18,34,.35));
+      border: 1px solid rgba(255,255,255,.10);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .glass:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(600px 300px at 10% 15%, rgba(124,58,237,.45), transparent 60%),
+                  radial-gradient(500px 260px at 90% 20%, rgba(34,211,238,.30), transparent 55%),
+                  radial-gradient(600px 320px at 60% 100%, rgba(79,70,229,.28), transparent 55%);
+      opacity:.75;
+      pointer-events:none;
+    }
+    .glass-inner{position:relative; padding:22px;}
+    .stat-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+      margin-top:14px;
+    }
+    .stat{
+      padding:14px;
       border-radius: 16px;
-      border: 1px solid #1f1f2e;
+      background: rgba(7,7,12,.40);
+      border: 1px solid rgba(255,255,255,.08);
     }
-    footer {
-      text-align: center;
-      padding: 3rem 2rem;
-      color: #8b8b9a;
-      font-size: 0.9rem;
+    .stat b{display:block; font-size:1.2rem; letter-spacing:-.02em}
+    .stat span{color: rgba(255,255,255,.68); font-weight:600; font-size:.95rem}
+
+    .divider{
+      height:1px; background: rgba(255,255,255,.08);
+      margin:16px 0;
+    }
+
+    /* Sections */
+    section{padding:56px 0}
+    .kicker{
+      color: rgba(255,255,255,.70);
+      font-weight:800;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      font-size:.82rem;
+    }
+    .section-title{
+      font-size: clamp(1.6rem, 2.4vw, 2.2rem);
+      letter-spacing:-.03em;
+      margin-top:10px;
+    }
+    .section-sub{
+      color: var(--muted);
+      margin-top:10px;
+      max-width: 70ch;
+    }
+
+    .cards{
+      margin-top:22px;
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:14px;
+    }
+    .card{
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(15,18,34,.65), rgba(15,18,34,.35));
+      border: 1px solid rgba(255,255,255,.10);
+      padding:18px;
+      box-shadow: 0 18px 55px rgba(0,0,0,.25);
+    }
+    .card h3{font-size:1.05rem; letter-spacing:-.01em}
+    .card p{margin-top:8px; color: rgba(255,255,255,.72); font-weight:500}
+    .chiprow{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px}
+    .chip{
+      font-size:.82rem;
+      padding:.35rem .6rem;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(7,7,12,.35);
+      color: rgba(255,255,255,.72);
+      font-weight:700;
+    }
+
+    /* Portfolio */
+    .work{
+      margin-top:22px;
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:14px;
+    }
+    .work-item{
+      border-radius: var(--radius);
+      border:1px solid rgba(255,255,255,.10);
+      overflow:hidden;
+      background: rgba(15,18,34,.45);
+    }
+    .thumb{
+      height:160px;
+      background:
+        radial-gradient(500px 220px at 20% 20%, rgba(124,58,237,.45), transparent 60%),
+        radial-gradient(500px 220px at 85% 25%, rgba(34,211,238,.30), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border-bottom:1px solid rgba(255,255,255,.10);
+    }
+    .work-body{padding:16px}
+    .work-body b{display:block; font-size:1.02rem}
+    .work-body p{margin-top:6px; color: rgba(255,255,255,.72); font-weight:500}
+    .work-body a{
+      display:inline-flex; gap:8px; align-items:center;
+      margin-top:12px;
+      color: rgba(255,255,255,.85);
+      font-weight:800;
+    }
+    .work-body a:hover{color:#fff}
+
+    /* Contact */
+    .contact{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+      margin-top:22px;
+      align-items:start;
+    }
+    .contact .card{padding:20px}
+    label{display:block; font-weight:800; color: rgba(255,255,255,.82); margin:10px 0 6px}
+    input, textarea{
+      width:100%;
+      padding:12px 12px;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(7,7,12,.35);
+      color:#fff;
+      outline:none;
+      font: inherit;
+    }
+    textarea{min-height:120px; resize: vertical}
+    input:focus, textarea:focus{border-color: rgba(34,211,238,.45); box-shadow: 0 0 0 4px rgba(34,211,238,.12)}
+    .smallprint{color: rgba(255,255,255,.58); font-weight:600; font-size:.92rem; margin-top:10px}
+
+    /* Footer */
+    footer{
+      padding:34px 0 44px;
+      border-top: 1px solid rgba(255,255,255,.06);
+      color: rgba(255,255,255,.55);
+      font-weight:600;
+      font-size:.92rem;
+    }
+    .footer-inner{display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap}
+    .footer-inner a{color: rgba(255,255,255,.70)}
+    .footer-inner a:hover{color:#fff}
+
+    /* Responsive */
+    @media (max-width: 920px){
+      .hero-grid{grid-template-columns: 1fr; gap:16px}
+      .cards{grid-template-columns: 1fr}
+      .work{grid-template-columns: 1fr}
+      .contact{grid-template-columns: 1fr}
+      .nav-links{display:none}
     }
   </style>
 </head>
+
 <body>
+  <!-- NAV -->
+  <div class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top" aria-label="Maher Media">
+        <span class="mark" aria-hidden="true"></span>
+        <span>Maher Media</span>
+      </a>
 
-<header>
-  <h1>Maher Media</h1>
-  <p>Modern websites and social media management designed to grow your brand and convert attention into results.</p>
-  <a href="mailto:youremail@example.com" class="btn">Get in Touch</a>
-</header>
+      <div class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#work">Work</a>
+        <a href="#process">Process</a>
+        <a href="#contact">Contact</a>
+      </div>
 
-<section>
-  <div class="grid">
-    <div class="card">
-      <h3>Website Design</h3>
-      <p>Fast, responsive, SEO-friendly websites built to look premium and perform on every device.</p>
-    </div>
-    <div class="card">
-      <h3>Social Media Management</h3>
-      <p>Consistent content, strategy, and analytics to grow your audience and engagement.</p>
-    </div>
-    <div class="card">
-      <h3>Brand Presence</h3>
-      <p>We help small businesses look established, professional, and trustworthy online.</p>
+      <!-- TODO: change email -->
+      <a class="cta" href="mailto:youremail@example.com">Get a Quote</a>
     </div>
   </div>
-</section>
 
-<footer>
-  © 2025 Maher Media. All rights reserved.
-</footer>
+  <!-- HERO -->
+  <main id="top" class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="pill"><span class="dot"></span> Multi-Media Design • Websites • Social</span>
+        <h1 class="h1"><span class="grad">Modern websites</span> and social media that make brands look expensive.</h1>
+        <p class="sub">
+          Maher Media helps small businesses build credibility fast—through premium design, clean messaging, and consistent content.
+        </p>
 
+        <div class="hero-actions">
+          <!-- TODO: change email -->
+          <a class="btn primary" href="mailto:youremail@example.com?subject=Maher%20Media%20Project%20Inquiry">Start a Project</a>
+          <a class="btn" href="#work">See Work</a>
+          <a class="btn" href="#services">Services</a>
+        </div>
+        <p class="tiny">Fast turnaround • Mobile-first • Clean, modern aesthetic</p>
+      </div>
+
+      <div class="glass" aria-label="Highlights">
+        <div class="glass-inner">
+          <div class="kicker">Maher Media</div>
+          <div class="section-title" style="margin-top:6px;">Multi-Media Design</div>
+          <p class="section-sub" style="margin-top:10px;">
+            A professional online presence—built to convert attention into calls, DMs, and customers.
+          </p>
+
+          <div class="divider"></div>
+
+          <div class="stat-grid">
+            <div class="stat">
+              <b>Websites</b>
+              <span>Fast • SEO-ready • Responsive</span>
+            </div>
+            <div class="stat">
+              <b>Social</b>
+              <span>Strategy • Content • Growth</span>
+            </div>
+            <div class="stat">
+              <b>Design</b>
+              <span>Brand visuals that pop</span>
+            </div>
+            <div class="stat">
+              <b>Support</b>
+              <span>Updates & ongoing help</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="wrap">
+      <div class="kicker">Services</div>
+      <div class="section-title">Everything you need to look legit online.</div>
+      <p class="section-sub">Pick a single service or bundle them for a full “done-for-you” presence.</p>
+
+      <div class="cards">
+        <div class="card">
+          <h3>Website Design & Build</h3>
+          <p>Landing pages and full websites that load fast, look premium, and turn visitors into leads.</p>
+          <div class="chiprow">
+            <span class="chip">Mobile-first</span>
+            <span class="chip">SEO basics</span>
+            <span class="chip">Netlify hosting</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Social Media Management</h3>
+          <p>Consistent posting, clean visuals, and content strategy built around your real business goals.</p>
+          <div class="chiprow">
+            <span class="chip">Content calendar</span>
+            <span class="chip">Analytics</span>
+            <span class="chip">Brand consistency</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Brand & Visual Design</h3>
+          <p>Logos, headers, and visual systems that make your brand look modern and trustworthy.</p>
+          <div class="chiprow">
+            <span class="chip">Logo kits</span>
+            <span class="chip">Templates</span>
+            <span class="chip">Style guide</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section id="work">
+    <div class="wrap">
+      <div class="kicker">Work</div>
+      <div class="section-title">A clean, modern portfolio layout.</div>
+      <p class="section-sub">Add your real projects here when ready. For now, these are placeholders that already look pro.</p>
+
+      <div class="work">
+        <div class="work-item">
+          <div class="thumb"></div>
+          <div class="work-body">
+            <b>Website Redesign</b>
+            <p>High-end landing page built for conversions with modern visuals and clean copy.</p>
+            <a href="#contact">Request something like this →</a>
+          </div>
+        </div>
+
+        <div class="work-item">
+          <div class="thumb"></div>
+          <div class="work-body">
+            <b>Social Media Revamp</b>
+            <p>Brand refresh + content system for consistent posting and improved engagement.</p>
+            <a href="#contact">Build my content system →</a>
+          </div>
+        </div>
+
+        <div class="work-item">
+          <div class="thumb"></div>
+          <div class="work-body">
+            <b>Brand Kit</b>
+            <p>Logo usage, colors, type, and templates—everything aligned for a premium look.</p>
+            <a href="#contact">Get a brand kit →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process">
+    <div class="wrap">
+      <div class="kicker">Process</div>
+      <div class="section-title">Simple, fast, and client-friendly.</div>
+      <p class="section-sub">No confusing steps—just clarity, speed, and a clean finished product.</p>
+
+      <div class="cards">
+        <div class="card">
+          <h3>1) Discovery</h3>
+          <p>We define your goal, your audience, and what “success” looks like for the project.</p>
+        </div>
+        <div class="card">
+          <h3>2) Design & Build</h3>
+          <p>We create a modern layout, write clean messaging, and build it mobile-first.</p>
+        </div>
+        <div class="card">
+          <h3>3) Launch & Improve</h3>
+          <p>Deploy on Netlify, connect your domain, and keep improving with updates and content.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="kicker">Contact</div>
+      <div class="section-title">Let’s build something that looks expensive.</div>
+      <p class="section-sub">Tell me what you need and your timeline. I’ll reply with next steps.</p>
+
+      <div class="contact">
+        <div class="card">
+          <!-- Simple email CTA (works immediately) -->
+          <h3>Quick contact</h3>
+          <p style="margin-top:8px;color:rgba(255,255,255,.72);font-weight:500;">
+            Prefer email? Click below and I’ll respond as soon as I can.
+          </p>
+          <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
+            <!-- TODO: change email -->
+            <a class="btn primary" href="mailto:youremail@example.com?subject=Maher%20Media%20Inquiry">Email Maher Media</a>
+            <a class="btn" href="#services">View Services</a>
+          </div>
+          <p class="smallprint">Tip: Later we can add a Netlify form for submissions directly on-site.</p>
+        </div>
+
+        <div class="card">
+          <!-- Optional form (not wired by default) -->
+          <h3>Project details</h3>
+          <form onsubmit="event.preventDefault(); alert('Form is a placeholder for now. Use the email button on the left, or ask me to set up Netlify Forms.');">
+            <label for="name">Name</label>
+            <input id="name" name="name" autocomplete="name" placeholder="Your name" />
+
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" autocomplete="email" placeholder="you@company.com" />
+
+            <label for="message">What do you need?</label>
+            <textarea id="message" name="message" placeholder="Website, social media, branding… what’s the goal?"></textarea>
+
+            <div style="margin-top:12px;">
+              <button class="btn primary" type="submit">Send</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <div>© <span id="y"></span> Maher Media • Multi-Media Design</div>
+      <div style="display:flex; gap:14px; flex-wrap:wrap;">
+        <a href="#top">Top</a>
+        <a href="#services">Services</a>
+        <a href="#work">Work</a>
+        <!-- TODO: change email -->
+        <a href="mailto:youremail@example.com">Email</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
-
